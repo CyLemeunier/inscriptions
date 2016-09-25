@@ -88,6 +88,6 @@ class TournamentsController < ApplicationController
   end
 
   def tournament_params
-    params.require(:tournament).permit(:city, :date, :date2, :tableau, :serie, :price1, :price2, :price3, :deadline)
+    params.require(:tournament).permit(:city, :date, :date2, :tableau, :serie, :price1, :price2, :price3, :deadline, :comment)
   end
 end
