@@ -27,6 +27,7 @@
                 <% if current_user %>
                   <th>Tournoi club ?</th>
                   <th>Modifier</th>
+                  <th>Supprimer</th>
                 <% end %>
               </tr>
               <% if hash[:array].empty? %>
@@ -99,6 +100,11 @@
                       <td align="center">
                         <%= link_to edit_tournament_path(:id => tournament.id) do %>
                           <i class="fa fa-cogs" aria-hidden="true"></i>
+                        <% end %>
+                      </td>
+                      <td align="center">
+                        <%= link_to tournament_path(:id => tournament.id), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer ce tournoi ?' } do %>
+                          <i class="fa fa-ban" aria-hidden="true"></i>
                         <% end %>
                       </td>
                     <% end %>
