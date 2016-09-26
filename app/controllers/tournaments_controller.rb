@@ -52,27 +52,7 @@ class TournamentsController < ApplicationController
   end
 
   def update
-    @registrations_by_tournaments = Registration.joins(:tournament).
-                                  joins(:player).
-                                  where(:tournament_id => params["id"])
-    @registrations_by_tournaments.each do |registration|
-      player = Player.find(registration.player_id)
-      player.credit += registration.price
-      player.save
-
-      transaction = Transaction.new
-      transaction.player_id = player.id.to_i
-      transaction.amount = registration.price
-      transaction.reason = "(CREDIT) Tournoi de #{@tournament.city} --> tournoi club"
-      transaction.save
-
-    end
-
-    @tournament.update(
-                        "price1" => params["price1"].to_i,
-                        "price2" => params["price2"].to_i,
-                        "price3" => params["price3"].to_i
-                        )
+    @tournament.update(tournament_params)
     redirect_to tournaments_path
   end
 
