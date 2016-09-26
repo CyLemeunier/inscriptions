@@ -3,8 +3,8 @@ class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tournaments_september = Tournament.where(date: Date.new(2016, 9, 1)...Date.new(2016, 10, 1)).order(:date)
-    @september = { name: "Septembre 2016", array: @tournaments_september}
+    # @tournaments_september = Tournament.where(date: Date.new(2016, 9, 1)...Date.new(2016, 10, 1)).order(:date)
+    # @september = { name: "Septembre 2016", array: @tournaments_september}
     @tournaments_october = Tournament.where(date: Date.new(2016, 10, 1)...Date.new(2016, 11, 1)).order(:date)
     @october = { name: "Octobre 2016", array: @tournaments_october}
     @tournaments_november = Tournament.where(date: Date.new(2016, 11, 1)...Date.new(2016, 12, 1)).order(:date)
@@ -25,7 +25,7 @@ class TournamentsController < ApplicationController
     @june = { name: "Juin 2017", array: @tournaments_june}
     @tournaments_july = Tournament.where(date: Date.new(2017, 7, 1)...Date.new(2017, 8, 1)).order(:date)
     @july = { name: "Juillet 2017", array: @tournaments_july}
-    @tournaments = [@september, @october, @november, @december, @january, @february, @march, @april, @may, @june, @july]
+    @tournaments = [@october, @november, @december, @january, @february, @march, @april, @may, @june, @july]
 
 
   end
