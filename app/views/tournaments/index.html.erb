@@ -91,7 +91,7 @@
                     </td>
                     <% if current_user %>
                       <td align="center">
-                        <%= link_to tournament_path(:id => tournament.id, :price1 => 0, :price2 => 0, :price3 => 0), method: :patch, data: { confirm: 'Êtes-vous sûr de vouloir passer ce tournoi en tournoi-club ?' } do %>
+                        <%= link_to tournament_update_tournoiclub_path(:tournament_id => tournament.id, :price1 => 0, :price2 => 0, :price3 => 0), method: :post, data: { confirm: 'Êtes-vous sûr de vouloir passer ce tournoi en tournoi-club ?' } do %>
                           <i class="fa fa-check-square-o" aria-hidden="true"></i>
                         <% end %>
                       </td>
