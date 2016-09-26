@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  before_action :set_tournament, only: [:show, :edit, :update, :delete]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
 
   def index
     @tournaments_september = Tournament.where(date: Date.new(2016, 9, 1)...Date.new(2016, 10, 1)).order(:date)
@@ -92,7 +92,7 @@ class TournamentsController < ApplicationController
     redirect_to tournaments_path
   end
 
-  def delete
+  def destroy
     @tournament.destroy
     redirect_to tournaments_path
   end
