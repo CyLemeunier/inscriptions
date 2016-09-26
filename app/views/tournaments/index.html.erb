@@ -26,6 +26,7 @@
                 <th>Inscrits</th>
                 <% if current_user %>
                   <th>Tournoi club ?</th>
+                  <th>Modifier</th>
                 <% end %>
               </tr>
               <% if hash[:array].empty? %>
@@ -93,6 +94,11 @@
                       <td align="center">
                         <%= link_to tournament_update_tournoiclub_path(:tournament_id => tournament.id, :price1 => 0, :price2 => 0, :price3 => 0), method: :post, data: { confirm: 'Êtes-vous sûr de vouloir passer ce tournoi en tournoi-club ?' } do %>
                           <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                        <% end %>
+                      </td>
+                      <td align="center">
+                        <%= link_to edit_tournament_path(:id => tournament.id) do %>
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
                         <% end %>
                       </td>
                     <% end %>
