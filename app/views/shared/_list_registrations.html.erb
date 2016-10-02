@@ -27,8 +27,11 @@
             <th>Prénom</th>
             <th>Tableau</th>
             <th>Série</th>
+            <th>Partenaire</th>
+          <% if current_user %>
             <th>Modifier</th>
             <th>Supprimer</th>
+          <% end %>
           </tr>
           <% @registrations_by_tournaments.each do |registration| %>
             <tr>
@@ -44,17 +47,24 @@
                 <%= registration.serie2 %></br>
                 <%= registration.serie3 %>
               </td>
-              <td align="center">
-                <%= link_to edit_tournament_registration_path(:tournament_id => registration.tournament_id, :id => registration.id) do %>
-                  <i class="fa fa-cogs" aria-hidden="true"></i>
-                <% end %>
+              <td>
+                <%= registration.com1 %></br>
+                <%= registration.com2 %></br>
+                <%= registration.com3 %>
               </td>
-              <td align="center">
-                <%= link_to tournament_registration_path(:tournament_id => registration.tournament_id, :id => registration.id),
-                      method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette inscription ?' } do %>
-                  <i class="fa fa-times" aria-hidden="true"></i>
-                <% end %>
-              </td>
+              <% if current_user %>
+                <td align="center">
+                  <%= link_to edit_tournament_registration_path(:tournament_id => registration.tournament_id, :id => registration.id) do %>
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                  <% end %>
+                </td>
+                <td align="center">
+                  <%= link_to tournament_registration_path(:tournament_id => registration.tournament_id, :id => registration.id),
+                        method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette inscription ?' } do %>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  <% end %>
+                </td>
+              <% end %>
             </tr>
           <% end %>
         </table>
