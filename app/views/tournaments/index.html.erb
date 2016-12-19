@@ -81,8 +81,12 @@
                       <% end %>
                     </td>
                     <td align="center">
-                      <%= link_to new_tournament_registration_path(:tournament_id => tournament.id) do %>
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <% if Date.parse(Time.now.to_s) > tournament.deadline %>
+                        <i class="fa fa-ban" aria-hidden="true"></i>
+                      <% else %>
+                        <%= link_to new_tournament_registration_path(:tournament_id => tournament.id) do %>
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <% end %>
                       <% end %>
                     </td>
                     <td><%= tournament.deadline.strftime("%d/%m/%Y") %></td>
