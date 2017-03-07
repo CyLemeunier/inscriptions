@@ -40,10 +40,12 @@ class TournamentsController < ApplicationController
 
   def create
     @tournament = Tournament.new(tournament_params)
+
     date = Date.parse(tournament_params["date"])
     @tournament.date = date
     city = tournament_params["city"].capitalize
     @tournament.city = city
+    # raise
     @tournament.save
     redirect_to tournaments_path
   end
@@ -105,6 +107,6 @@ class TournamentsController < ApplicationController
   end
 
   def tournament_params
-    params.require(:tournament).permit(:city, :date, :date2, :tableau, :serie, :price1, :price2, :price3, :deadline, :comment)
+    params.require(:tournament).permit(:city, :date, :date2, :tableau, :serie, :price1, :price2, :price3, :deadline, :comment, :address)
   end
 end
