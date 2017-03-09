@@ -1,6 +1,11 @@
 class RegistrationsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :new, :create]
 
+  def all_registrations
+    @registrations_by_tournaments = Registration.joins(:tournament).
+                                  joins(:player)
+  end
+
   def index
     @tournament = Tournament.find(params["tournament_id"])
     @registrations_by_tournaments = Registration.joins(:tournament).

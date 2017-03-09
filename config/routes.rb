@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/credit_insuffisant' => 'pages#credit_insuffisant'
   get '/comment_ca_fonctionne' => 'pages#comment_ca_fonctionne'
+  get '/registrations' => 'registrations#all_registrations'
 
   resources :players do
     resources :transactions

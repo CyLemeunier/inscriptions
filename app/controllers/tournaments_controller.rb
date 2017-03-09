@@ -45,7 +45,6 @@ class TournamentsController < ApplicationController
     @tournament.date = date
     city = tournament_params["city"].capitalize
     @tournament.city = city
-    # raise
     @tournament.save
     redirect_to tournaments_path
   end
