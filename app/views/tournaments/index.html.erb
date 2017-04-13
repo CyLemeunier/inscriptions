@@ -120,6 +120,126 @@
         </div>
       </div>
     </div>
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <div>
+          <h2>TOURNOIS PASSES</h2>
+        </div>
+
+        <div>
+          <% @last_tournaments.each do |hash| %>
+            <table class="table table-striped" style="margin-bottom: 40px;">
+              <tr>
+                <th class="th-month"><%= hash[:name] %></th>
+              </tr>
+              <tr>
+                <th>Date</th>
+                <th>Ville</th>
+                <th>Tableau</th>
+                <th>Série</th>
+                <th align="center">1 tab.</th>
+                <th>2 tab.</th>
+                <th>3 tab.</th>
+                <th>S'incrire</th>
+                <th>Date limite inscr.</th>
+                <th>Inscrits</th>
+                <% if current_user %>
+                  <th>Tournoi club ?</th>
+                  <th>Modifier</th>
+                  <th>Supprimer</th>
+                <% end %>
+              </tr>
+              <% if hash[:array].empty? %>
+                <tr>
+                  <td colspan="9">
+                    <i class="fa fa-times" aria-hidden="true" style="color: red;"></i> Pas de tournoi référencé pour le moment
+                  </td>
+                </tr>
+              <% else %>
+                <% hash[:array].each do |tournament| %>
+                  <tr>
+                    <td>
+                      <% if tournament.date.strftime("%A %e").match(/Friday/) %>
+                        <%= tournament.date.strftime("%A %e").gsub(/Friday/, "Vendredi") %>
+                      <% elsif tournament.date.strftime("%A %e").match(/Saturday/) %>
+                        <%= tournament.date.strftime("%A %e").gsub(/Saturday/, "Samedi") %>
+                      <% elsif tournament.date.strftime("%A %e").match(/Sunday/) %>
+                        <%= tournament.date.strftime("%A %e").gsub(/Sunday/, "Dimanche") %>
+                      <% else %>
+                      <%= tournament.date.strftime("%A %e") %>
+                      <% end%>
+                      <% if tournament.date2 != nil %>
+                        </br>
+                        <% if tournament.date2.strftime("%A %e").match(/Friday/) %>
+                        <%= tournament.date2.strftime("%A %e").gsub(/Friday/, "Vendredi") %>
+                      <% elsif tournament.date2.strftime("%A %e").match(/Saturday/) %>
+                        <%= tournament.date2.strftime("%A %e").gsub(/Saturday/, "Samedi") %>
+                      <% elsif tournament.date2.strftime("%A %e").match(/Sunday/) %>
+                        <%= tournament.date2.strftime("%A %e").gsub(/Sunday/, "Dimanche") %>
+                      <% else %>
+                      <%= tournament.date2.strftime("%A %e") %>
+                      <% end%>
+                      <% end %>
+                    </td>
+                    <td><%= tournament.city %></td>
+                    <td><%= tournament.tableau %></td>
+                    <td><%= tournament.serie %></td>
+                    <td align="center"><%= tournament.price1 %>€</td>
+                    <td align="center">
+                      <% if tournament.price2 == nil %>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      <% else %>
+                        <%= tournament.price2 %>€
+                      <% end %>
+                    </td>
+                    <td align="center">
+                      <% if tournament.price3 == nil %>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      <% else %>
+                        <%= tournament.price3 %>€
+                      <% end %>
+                    </td>
+                    <td align="center">
+                      <% if Date.parse(Time.now.to_s) > tournament.deadline %>
+                        <i class="fa fa-ban" aria-hidden="true"></i>
+                      <% else %>
+                        <%= link_to new_tournament_registration_path(:tournament_id => tournament.id) do %>
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td><%= tournament.deadline.strftime("%d/%m/%Y") %></td>
+                    <td align="center">
+                      <%= link_to tournament_registrations_path(:tournament_id => tournament.id) do %>
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                      <% end %>
+                    </td>
+                    <% if current_user %>
+                      <td align="center">
+                        <%= link_to tournament_update_tournoiclub_path(:tournament_id => tournament.id, :price1 => 0, :price2 => 0, :price3 => 0), method: :post, data: { confirm: 'Êtes-vous sûr de vouloir passer ce tournoi en tournoi-club ?' } do %>
+                          <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                        <% end %>
+                      </td>
+                      <td align="center">
+                        <%= link_to edit_tournament_path(:id => tournament.id) do %>
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                        <% end %>
+                      </td>
+                      <td align="center">
+                        <%= link_to tournament_path(:id => tournament.id), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer ce tournoi ?' } do %>
+                          <i class="fa fa-ban" aria-hidden="true"></i>
+                        <% end %>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              <% end %>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

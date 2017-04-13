@@ -25,8 +25,8 @@ class TournamentsController < ApplicationController
     @june = { name: "Juin 2017", array: @tournaments_june}
     @tournaments_july = Tournament.where(date: Date.new(2017, 7, 1)...Date.new(2017, 8, 1)).order(:date)
     @july = { name: "Juillet 2017", array: @tournaments_july}
-    last_tournaments = []
-    @tournaments = [@april, @may, @june, @july, @october, @november, @december,@january, @february, @march]
+    @last_tournaments = [@october, @november, @december,@january, @february, @march]
+    @tournaments = [@april, @may, @june, @july]
 
 
   end
