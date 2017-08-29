@@ -25,8 +25,29 @@ class TournamentsController < ApplicationController
     @june = { name: "Juin 2017", array: @tournaments_june}
     @tournaments_july = Tournament.where(date: Date.new(2017, 7, 1)...Date.new(2017, 8, 1)).order(:date)
     @july = { name: "Juillet 2017", array: @tournaments_july}
-    @last_tournaments = [@october, @november, @december,@january, @february, @march, @april]
-    @tournaments = [@may, @june, @july]
+
+    @tournaments_october17 = Tournament.where(date: Date.new(2017, 10, 1)...Date.new(2017, 11, 1)).order(:date)
+    @october17 = { name: "Octobre 2017", array: @tournaments_october17}
+    @tournaments_november17 = Tournament.where(date: Date.new(2017, 11, 1)...Date.new(2017, 12, 1)).order(:date)
+    @november17 ={ name: "Novembre 2017", array: @tournaments_november17}
+    @tournaments_december17 = Tournament.where(date: Date.new(2017, 12, 1)...Date.new(2018, 1, 1)).order(:date)
+    @december17 = { name: "Décembre 2017", array: @tournaments_december17}
+    @tournaments_january18 = Tournament.where(date: Date.new(2018, 1, 1)...Date.new(2018, 2, 1)).order(:date)
+    @january18 = { name: "Janvier 2018", array: @tournaments_january18}
+    @tournaments_february18 = Tournament.where(date: Date.new(2018, 2, 1)...Date.new(2018, 3, 1)).order(:date)
+    @february18 = { name: "Février 2018", array: @tournaments_february18}
+    @tournaments_march18 = Tournament.where(date: Date.new(2018, 3, 1)...Date.new(2018, 4, 1)).order(:date)
+    @march18 = { name: "Mars 2018", array: @tournaments_march18}
+    @tournaments_april18 = Tournament.where(date: Date.new(2018, 4, 1)...Date.new(2018, 5, 1)).order(:date)
+    @april18 = { name: "Avril 2018", array: @tournaments_april18}
+    @tournaments_may18 = Tournament.where(date: Date.new(2018, 5, 1)...Date.new(2018, 6, 1)).order(:date)
+    @may18 = { name: "Mai 2018", array: @tournaments_may18}
+    @tournaments_june18 = Tournament.where(date: Date.new(2018, 6, 1)...Date.new(2018, 7, 1)).order(:date)
+    @june18 = { name: "Juin 2018", array: @tournaments_june18}
+    @tournaments_july18 = Tournament.where(date: Date.new(2018, 7, 1)...Date.new(2018, 8, 1)).order(:date)
+    @july18 = { name: "Juillet 2018", array: @tournaments_july18}
+    @last_tournaments = [@october, @november, @december,@january, @february, @march, @april, @may, @june, @july]
+    @tournaments = [@october17, @november17, @december17, @january18, @february18, @march18, @april18, @may18, @june18, @july18]
 
 
   end
