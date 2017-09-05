@@ -26,6 +26,8 @@ class TournamentsController < ApplicationController
     @tournaments_july = Tournament.where(date: Date.new(2017, 7, 1)...Date.new(2017, 8, 1)).order(:date)
     @july = { name: "Juillet 2017", array: @tournaments_july}
 
+    @tournaments_september17 = Tournament.where(date: Date.new(2017, 9, 1)...Date.new(2017, 10, 1)).order(:date)
+    @september17 = { name: "Septembre 2017", array: @tournaments_september17}
     @tournaments_october17 = Tournament.where(date: Date.new(2017, 10, 1)...Date.new(2017, 11, 1)).order(:date)
     @october17 = { name: "Octobre 2017", array: @tournaments_october17}
     @tournaments_november17 = Tournament.where(date: Date.new(2017, 11, 1)...Date.new(2017, 12, 1)).order(:date)
@@ -47,7 +49,7 @@ class TournamentsController < ApplicationController
     @tournaments_july18 = Tournament.where(date: Date.new(2018, 7, 1)...Date.new(2018, 8, 1)).order(:date)
     @july18 = { name: "Juillet 2018", array: @tournaments_july18}
     @last_tournaments = [@october, @november, @december,@january, @february, @march, @april, @may, @june, @july]
-    @tournaments = [@october17, @november17, @december17, @january18, @february18, @march18, @april18, @may18, @june18, @july18]
+    @tournaments = [@september17, @october17, @november17, @december17, @january18, @february18, @march18, @april18, @may18, @june18, @july18]
 
 
   end
