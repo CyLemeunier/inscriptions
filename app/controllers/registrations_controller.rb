@@ -2,8 +2,8 @@ class RegistrationsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :new, :create]
 
   def all_registrations
-    @registrations_by_tournaments = Registration.joins(:tournament).
-                                  joins(:player)
+    @registrations_by_tournaments = Registration.includes(:tournament).
+                                  includes(:player).sort_by{ |r| [r.created_at, r.player.last_name] }.reverse
   end
 
   def index
