@@ -5,7 +5,7 @@
   </div>
   <div>
     <% @registrations_by_tournaments.each do |registration| %>
-      <li><%= registration.updated_at.strftime("%d / %m / %Y ")%> / <%= registration.player.last_name %> '/' <%= registration.tournament.city %>   </li>
+      <li><%= registration.updated_at.strftime("%d / %m / %Y ")%> / <%= registration.player.last_name %> / <%= registration.tournament.city %>   </li>
     <% end %>
   </div>
 </div>
