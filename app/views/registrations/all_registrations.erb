@@ -3,23 +3,9 @@
     <h2>Liste des inscriptions</h2>
     <h4>de la plus récente à la plus ancienne</h4>
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-3 col-sm-offset-5">
-      <table lass="table table-striped">
-        <tr>
-          <th>Date</th>
-          <th>Joueur</th>
-          <th>Tournoi</th>
-        </tr>
-        <% @registrations_by_tournaments.each do |registration| %>
-          <tr>
-            <td><%= registration.updated_at.strftime("%d / %m / %Y ") %></td>
-            <td><%= registration.player.last_name %></td>
-            <td><%= registration.tournament.city %></td>
-
-          </tr>
-        <% end %>
-      </table>
-    </div>
+  <div>
+    <% @registrations_by_tournaments.each do |registration| %>
+      <li><%= registration.updated_at.strftime("%d / %m / %Y ")%> / <%= registration.player.last_name %> '/' <%= registration.tournament.city %>   </li>
+    <% end %>
   </div>
 </div>
